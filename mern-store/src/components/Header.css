@@ -1,0 +1,11 @@
+.picture-link img {
+  width: 25px;
+  height: 25px;
+  margin: 1vw;
+}
+
+.nav-element-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
