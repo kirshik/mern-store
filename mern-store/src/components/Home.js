@@ -15,17 +15,14 @@ function Home(props) {
             <a href="/" className="list-group-item list-group-item-action">
               <p className="lead mb-0">Home</p>
             </a>
-            <a href="/" className="list-group-item list-group-item-action">
-              <p className="lead mb-0">Phones</p>
+            <a href="/categories" className="list-group-item list-group-item-action">
+              <p className="lead mb-0">Categories</p>
             </a>
-            <a href="/" className="list-group-item list-group-item-action">
+            <a href="/categories/1" className="list-group-item list-group-item-action">
               <p className="lead mb-0">Displays</p>
             </a>
-            <a href="/" className="list-group-item list-group-item-action">
-              <p className="lead mb-0">{"TV & AV"}</p>
-            </a>
-            <a href="/" className="list-group-item list-group-item-action">
-              <p className="lead mb-0">Categories</p>
+            <a href="/product" className="list-group-item list-group-item-action">
+              <p className="lead mb-0">Product</p>
             </a>
             <a href="/about-us" className="list-group-item list-group-item-action">
               <p className="lead mb-0">About Us</p>

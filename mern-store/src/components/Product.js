@@ -1,9 +1,9 @@
 
 
 function Product(props) {
-  const photos = props.photos.map(photo => {
+  const photos = props.photos ? props.photos.map(photo => {
     return (<></>);
-  })
+  }) : <></>;
   return (
     <>
       {props.header}

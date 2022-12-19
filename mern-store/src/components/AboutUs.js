@@ -10,9 +10,9 @@ function AboutUs(props) {
 
       <div className="card bg-dark  border-0 rounded-0 text-white" >
         <img src="https://portotheme.com/html/porto_ecommerce/assets/images/page-header-bg.jpg" className="card-img m-0 w-100 rounded-0" alt="..."></img>
-        <div className="card-body d-flex-col text-center">
+        <div className="card-img-overlay d-flex-col text-left ms-5 text-dark mt-3">
           <p className="card-title h3">About us <br /><span className="h1">Our Company</span></p>
-          <button type="button" className="btn btn-outline-light ">Contact Us</button>
+          <button type="button" className="btn btn-outline-dark ">Contact Us</button>
         </div>
       </div>
       <div className="container">
