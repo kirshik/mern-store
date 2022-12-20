@@ -1,17 +1,19 @@
 import Category from "./Category";
 import Filter from "./Filter";
+import { nanoid } from 'nanoid';
+
 
 function Categories(props) {
+  const categories = props.categories ? props.categories.map(category => {
 
-  const example = props.name ? <Category name={props.name} noLimit /> : <><Category name="Some category" />
-    <Category name="Some category" />
-    <Category name="Some category" />
-    <Category name="Some category" /></>
+    return <Category key={nanoid()} name={category.name} id={category.id} />;
+  }) : <></>;
+  const example = props.name ? <Category name={props.name} noLimit /> : categories;
 
   return (
     <>
       {props.header}
-      <Filter name={props.name} />
+      <Filter name={props.name} categories={props.categories} />
       {example}
       {props.footer}
     </>

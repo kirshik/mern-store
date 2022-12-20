@@ -9,7 +9,6 @@ function Product(props) {
       {props.header}
       <div className="row d-flex">
         <div className="col-4">
-
         </div>
         <div className="col-8"></div>
       </div>

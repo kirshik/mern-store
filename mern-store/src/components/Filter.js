@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { nanoid } from 'nanoid';
+import serverURL from '../globals';
+import axios from 'axios';
 
 
 function Filter(props) {
   const [show, setShow] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
+  useEffect(() => {
+    const url = serverURL + `/api/categories`;
+    axios.get(url).then((response) => { setCategories(response.data) })
+  }, []);
 
   return (
     <div className="p-3 bg-light">
@@ -22,30 +31,25 @@ function Filter(props) {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <DropdownButton id="dropdown-basic-button" variant='outline-dark' title={props.name ? props.name : "Categories"}>
-              <Dropdown.Item href="/categories/1">Displays</Dropdown.Item>
-              <Dropdown.Item href="/categories/2">{"Tv&AV"}</Dropdown.Item>
-              <Dropdown.Item href="/categories/3">Laptops</Dropdown.Item>
-              <Dropdown.Item href="/categories/1">Displays</Dropdown.Item>
-              <Dropdown.Item href="/categories/2">{"Tv&AV"}</Dropdown.Item>
-              <Dropdown.Item href="/categories/3">Laptops</Dropdown.Item>
-              <Dropdown.Item href="/categories/1">Displays</Dropdown.Item>
-              <Dropdown.Item href="/categories/2">{"Tv&AV"}</Dropdown.Item>
-              <Dropdown.Item href="/categories/3">Laptops</Dropdown.Item>
+              <Dropdown.Item href={`/categories`}>Categories</Dropdown.Item>
+              {categories.map(category => {
+                return <Dropdown.Item key={nanoid()} href={`/categories/${category.name}`}>{category.name}</Dropdown.Item>
+              })}
             </DropdownButton>
             <div className="form-check m-3 ms-0">
               <input className="form-check-input bg-dark border-0" type="checkbox" value="" id="flexCheckDefault" />
-              <label className="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 Some value
               </label>
             </div>
             <div className="form-check m-3 ms-0">
               <input className="form-check-input bg-dark border-0 " type="checkbox" value="" id="flexCheckDefault" />
-              <label className="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" htmlFor="flexCheckDefault">
                 Some value
               </label>
             </div>
-            <label for="moneyRange" class="form-label">Choose price range $:</label>
-            <input type="range" class="form-range" min="0" max="10000" step="0.5" id="moneyRange" />
+            <label htmlFor="moneyRange" className="form-label">Choose price range $:</label>
+            <input type="range" className="form-range" min="0" max="10000" step="0.5" id="moneyRange" />
           </Offcanvas.Body>
         </Offcanvas>
       </>
