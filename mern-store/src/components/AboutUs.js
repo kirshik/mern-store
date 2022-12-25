@@ -27,35 +27,35 @@ function AboutUs(props) {
           printer took a galley of type and scrambled it to make a type specimen book.</p>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
       </div>
-      <div class=" text-center d-grid p-5 pt-3 bg-light">
+      <div className=" text-center d-grid p-5 pt-3 bg-light">
         <div className='row' >
           <p className="h2 mb-4">Why choose us?</p>
         </div>
         <div className='row justify-content-md-around' >
-          <div class="col-sm-3">
-            <div class="card">
-              <div class="card-body">
-                <img class="card-img-top w-25 mb-3" src={Shippment} alt="Card image cap"></img>
-                <h5 class="card-title">Free Shipping</h5>
-                <p class="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
+          <div className="col-sm-3">
+            <div className="card">
+              <div className="card-body">
+                <img className="card-img-top w-25 mb-3" src={Shippment} alt="Card image cap"></img>
+                <h5 className="card-title">Free Shipping</h5>
+                <p className="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-3">
-            <div class="card">
-              <div class="card-body">
-                <img class="card-img-top w-25 mb-3" src={Paid} alt="Card image cap"></img>
-                <h5 class="card-title ">100% Money Back Guarantee</h5>
-                <p class="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
+          <div className="col-sm-3">
+            <div className="card">
+              <div className="card-body">
+                <img className="card-img-top w-25 mb-3" src={Paid} alt="Card image cap"></img>
+                <h5 className="card-title ">100% Money Back Guarantee</h5>
+                <p className="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-3">
-            <div class="card">
-              <div class="card-body">
-                <img class="card-img-top w-25 mb-3" src={Support} alt="Card image cap"></img>
-                <h5 class="card-title">Online Support 24/7</h5>
-                <p class="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
+          <div className="col-sm-3">
+            <div className="card">
+              <div className="card-body">
+                <img className="card-img-top w-25 mb-3" src={Support} alt="Card image cap"></img>
+                <h5 className="card-title">Online Support 24/7</h5>
+                <p className="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
               </div>
             </div>
           </div>

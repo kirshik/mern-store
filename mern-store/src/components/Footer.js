@@ -25,8 +25,6 @@ function Footer() {
             <p className="h4 mb-3">Customer service</p>
             <p><a href="/" className="link-light">Help Center</a></p>
             <p> <a href="about-us" className="link-light">About us</a></p>
-            <p> <a href="about-us" className="link-light">About us</a></p>
-            <p> <a href="about-us" className="link-light">About us</a></p>
           </div>
           <div className="col">
             <p className="h4 mb-3">Tips</p>

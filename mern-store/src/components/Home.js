@@ -1,8 +1,14 @@
 import { Carousel } from 'react-bootstrap';
+import { nanoid } from 'nanoid';
 
 
 
 function Home(props) {
+  const categories = props.categories.map((category) => {
+    return <a key={nanoid()} href={`/categories/${category.name}`} className="list-group-item list-group-item-action">
+      <p className="lead mb-0">{`${category.name}`}</p>
+    </a>
+  })
 
   return (
     <>
@@ -18,12 +24,7 @@ function Home(props) {
             <a href="/categories" className="list-group-item list-group-item-action">
               <p className="lead mb-0">Categories</p>
             </a>
-            <a href="/categories/1" className="list-group-item list-group-item-action">
-              <p className="lead mb-0">Displays</p>
-            </a>
-            <a href="/product" className="list-group-item list-group-item-action">
-              <p className="lead mb-0">Product</p>
-            </a>
+            {categories}
             <a href="/about-us" className="list-group-item list-group-item-action">
               <p className="lead mb-0">About Us</p>
             </a>
@@ -38,7 +39,7 @@ function Home(props) {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>First slide label</h3>
+
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
           </Carousel.Item>
@@ -50,7 +51,7 @@ function Home(props) {
             />
 
             <Carousel.Caption>
-              <h3>Second slide label</h3>
+
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </Carousel.Caption>
           </Carousel.Item>
@@ -62,7 +63,7 @@ function Home(props) {
             />
 
             <Carousel.Caption>
-              <h3>Third slide label</h3>
+
               <p>
                 Praesent commodo cursus magna, vel scelerisque nisl consectetur.
               </p>
@@ -72,9 +73,9 @@ function Home(props) {
       </main>
       <div className="container">
         <p className="h1 text-center">Looking for something else?</p>
-        <form class="form-inline d-flex mt-4 m-5">
-          <input class="form-control mr-sm-2 me-1" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+        <form className="form-inline d-flex mt-4 m-5">
+          <input className="form-control mr-sm-2 me-1" type="search" placeholder="Search" aria-label="Search" />
+          <button className="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
 

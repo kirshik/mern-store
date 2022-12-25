@@ -8,7 +8,7 @@ function Categories(props) {
 
     return <Category key={nanoid()} name={category.name} id={category.id} />;
   }) : <></>;
-  const example = props.name ? <Category name={props.name} noLimit /> : categories;
+  const example = props.categoryId ? <Category name={props.name} id={props.categoryId} noLimit /> : categories;
 
   return (
     <>

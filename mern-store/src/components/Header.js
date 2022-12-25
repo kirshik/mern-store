@@ -1,5 +1,8 @@
 import "./Header.css"
 function Header(props) {
+  function handleUnregestred(e) {
+    props.handleUnregestred(e);
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -10,9 +13,9 @@ function Header(props) {
               <input className="form-control me-2 " type="search" placeholder="Search" aria-label="Search" />
               <button className="btn btn-outline-light" type="submit">Search</button>
             </form>
-            <a className="picture-link" href="/wishlist"><img alt="some text" src={require("./images/wishlist.png")} /></a>
-            <a className="picture-link" href="/cart"><img alt="some text" src={require("./images/cart.png")} /></a>
-            <a className="picture-link me-3" href="/profile"><img alt="some text" src={require("./images/profile.png")} /></a>
+            <a className="picture-link" href="/wishlist" onClick={handleUnregestred}><img alt="some text" src={require("./images/wishlist.png")} /></a>
+            <a className="picture-link" href="/cart" onClick={handleUnregestred}><img alt="some text" src={require("./images/cart.png")} /></a>
+            <a className="picture-link me-3" href="/profile" onClick={handleUnregestred}><img alt="some text" src={require("./images/profile.png")} /></a>
           </div>
         </div>
       </nav>

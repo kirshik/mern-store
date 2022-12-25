@@ -7,41 +7,28 @@ import { useEffect, useState } from "react";
 
 function Category(props) {
   const [topProducts, setTopProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const url = serverURL + `/api/top-products/${props.id}`;
     axios.get(url).then((response) => { setTopProducts(response.data) })
-  }, [topProducts]);
+  }, []);
+  useEffect(() => {
+    const url = serverURL + `/api/products/categories/${props.id}`;
+    axios.get(url).then((response) => { setProducts(response.data) })
+  }, []);
 
 
-
-  const exampleTitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ."
   const seeMoreBtn = <a className="btn btn-outline-dark btn-sm ms-2 col-1 fs-5 d-flex justify-content-center" href={`categories/${props.name}`}>
     <span className="align-self-center">{">"}</span></a>;
-  const category = props.noLimit ? <>
-    <div className="row justify-content-between m-2">
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-    </div>
-    <div className="row justify-content-between m-2">
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-    </div>
-    <div className="row justify-content-between m-2">
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-      <CategoryItem name="boots" title={exampleTitle} />
-    </div>
-  </> : <>
+  const category = props.noLimit ? <div className="row justify-content-center">
+    {products.map((product) => {
+      return <CategoryItem col="col-3" id={product.id} name={product.name} title={product.description} key={nanoid()} image={product.images_urls} />
+    })}
+  </div> : <>
     <div className="row justify-content-between m-2">
       {topProducts.map(product => {
-        return <CategoryItem name={product.name} title={product.description} key={nanoid()} image={product.images_urls} />
+        return <CategoryItem id={product.id} name={product.name} title={product.description} key={nanoid()} image={product.images_urls} />
       })}
       {seeMoreBtn}
     </div>

@@ -20,6 +20,7 @@ function Filter(props) {
     axios.get(url).then((response) => { setCategories(response.data) })
   }, []);
 
+
   return (
     <div className="p-3 bg-light">
       <>
