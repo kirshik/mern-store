@@ -55,7 +55,7 @@ function Product(props) {
                 />
               </div>
               <button className="btn btn-danger me-2">Add to Cart</button>
-              <button className="btn  btn-dark">Add to Wishlist</button>
+              <button className="btn  btn-dark" name={product.id} onClick={props.addToWishList}>Add to Wishlist</button>
             </div>
           </div>
         </div>

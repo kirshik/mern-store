@@ -5,16 +5,15 @@ import { nanoid } from 'nanoid';
 
 function Categories(props) {
   const categories = props.categories ? props.categories.map(category => {
-
-    return <Category key={nanoid()} name={category.name} id={category.id} />;
+    return <Category key={nanoid()} addToWishList={props.addToWishList} name={category.name} id={category.id} />;
   }) : <></>;
-  const example = props.categoryId ? <Category name={props.name} id={props.categoryId} noLimit /> : categories;
+  const body = props.categoryId ? <Category addToWishList={props.addToWishList} name={props.name} id={props.categoryId} noLimit /> : categories;
 
   return (
     <>
       {props.header}
       <Filter name={props.name} categories={props.categories} />
-      {example}
+      {body}
       {props.footer}
     </>
   );
