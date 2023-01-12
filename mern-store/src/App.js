@@ -16,6 +16,7 @@ import SignUpModal from './components/SignUpModal';
 import Cart from './components/Cart';
 import Profile from './components/Profile';
 import WishList from './components/WishList';
+import swal from 'sweetalert';
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
   function addToWishList(e) {
     const id = e.target.name;
     const url = serverURL + `/api/wishlist`;
-    axios.post(url, { product_id: id }, axiosConfig).then((response) => console.log(response.data));
+    axios.post(url, { product_id: id }, axiosConfig).then((response) => swal({ icon: "success", text: "Product added to wishlist" }));
   };
 
 
@@ -61,7 +62,7 @@ function App() {
     axios.get(url).then((response) => setCategories(response.data));
   }, []);
   useEffect(() => {
-    const url = serverURL + '/api/products-ids';
+    const url = serverURL + '/api/products/ids';
     axios.get(url).then((response) => setIds(response.data));
   }, []);
 
@@ -91,6 +92,7 @@ function App() {
     </Routes>
   return (
     <>
+
       <SignInModal show={showSignInModal} handleClose={handleShowSignInModalClose} handleShow={handleShowSignInModalShow} handleChange={handleShowSignUpModalShow} />
       <SignUpModal show={showSignUpModal} handleClose={handleShowSignUpModalClose} handleShow={handleShowSignUpModalShow} handleChange={handleShowSignInModalShow} />
       <Router>

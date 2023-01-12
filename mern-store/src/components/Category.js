@@ -10,7 +10,7 @@ function Category(props) {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    const url = serverURL + `/api/top-products/${props.id}`;
+    const url = serverURL + `/api/products/top/4/${props.id}`;
     axios.get(url).then((response) => { setTopProducts(response.data) })
   }, []);
   useEffect(() => {

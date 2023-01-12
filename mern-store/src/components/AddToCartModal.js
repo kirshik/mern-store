@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 import serverURL, { axiosConfig } from '../globals';
 import cartImg from './images/cart.png';
 
@@ -9,10 +11,12 @@ function AddToCartModal(props) {
 
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
+
+  const navigate = useNavigate();
+
   function handleInputChange(e) {
     setQuantity(e.target.value);
   }
-  function handleChange(e) { }
 
   useEffect(() => {
     const url = serverURL + `/api/products/${props.productId}`
@@ -26,10 +30,9 @@ function AddToCartModal(props) {
   }, [props.productId]);
 
   function handleAdd(e) {
-    const urlPOST = serverURL + "/api/cart";
+    const urlPOST = serverURL + "/api/cart/add";
     const data = {
       product_id: product.id,
-      price: product.price,
       quantity: quantity
     };
 
@@ -37,6 +40,19 @@ function AddToCartModal(props) {
       console.log(response);
       props.handleDelete(e);
       props.handleClose();
+      const swalSettings = {
+        icon: "success",
+        text: response.data,
+        button: {
+          text: "Go to cart",
+          value: true,
+          visible: true
+        }
+      }
+      swal(swalSettings).then((result) => { if (result) navigate("/cart") });
+    }).catch((error) => {
+      console.log(error);
+      swal({ icon: "error", text: error.response.data });
     });
 
   }
@@ -81,17 +97,6 @@ function AddToCartModal(props) {
               </div>
             </div>
           </div>
-          {/* <form className="form" autoComplete="off" id="formLogin" noValidate="" method="POST">
-            <div className="input-group mb-3">
-              <div className="form-floating">
-                <input type="number" className="form-control" id="floatingInputGroup1" name='quantity' onChange={handleInputChange} required placeholder="Amount" />
-                <label htmlFor="floatingInputGroup1">Amount</label>
-              </div>
-            </div>
-            <div className="form-group ">
-              <button type="submit" className="btn btn-outline-danger float-right" id="btnLogin">Add to cart</button>
-            </div>
-          </form> */}
         </Modal.Body>
       </Modal>
     </>

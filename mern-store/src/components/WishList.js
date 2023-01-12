@@ -15,7 +15,7 @@ function WishList(props) {
 
 
   useEffect(() => {
-    const url = serverURL + "/api/wishlist";
+    const url = serverURL + "/api/wish-list";
     axios.get(url, axiosConfig).then((response) => {
       setProducts(response.data);
       setIsUpdated(false);
@@ -30,8 +30,9 @@ function WishList(props) {
   }
 
   function handleDelete(e) {
-    const url = serverURL + "/api/wishlist/" + e.target.name;
-    axios.delete(url, axiosConfig).then((response) => {
+    const url = serverURL + "/api/wish-list/delete";
+    const id = Number(e.target.name);
+    axios.delete(url, { data: { product_id: id }, ...axiosConfig }).then((response) => {
       setIsUpdated(true);
     });
   }

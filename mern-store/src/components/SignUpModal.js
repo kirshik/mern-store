@@ -102,7 +102,9 @@ function SignUpModal(props) {
               </div>
             </div>
             <div className="form-group ">
-              <button type="submit" onClick={handlePost} className="btn btn-outline-danger float-right" id="btnLogin">Sign Up</button>
+              <a className='link-secondary' style={{ cursor: "pointer " }} onClick={handleChange}>
+                Have account? Sign In
+              </a>
             </div>
           </form>
         </Modal.Body>
@@ -110,9 +112,7 @@ function SignUpModal(props) {
           <button className='btn btn-outline-dark' onClick={props.handleClose}>
             Close
           </button>
-          <button className='btn btn-outline-danger' onClick={handleChange}>
-            Sign In
-          </button>
+          <button type="submit" onClick={handlePost} className="btn btn-danger float-right" id="btnLogin">Sign Up</button>
         </Modal.Footer>
       </Modal>
     </>
