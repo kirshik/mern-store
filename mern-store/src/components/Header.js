@@ -1,7 +1,14 @@
+import axios from "axios";
+import serverURL from "../globals";
 import "./Header.css"
 function Header(props) {
   function handleUnregestred(e) {
     props.handleUnregestred(e);
+  }
+  function handleSearch(e) {
+    e.preventDefault();
+    const url = serverURL + "/api/search";
+    axios.get(url, { params: { search: e.target.search.value } }).then((response) => { })
   }
   return (
     <>
@@ -11,11 +18,11 @@ function Header(props) {
           <div className="nav-element-container">
             <form className="d-flex me-3 ms-3" role="search">
               <input className="form-control me-2 " type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-light" type="submit">Search</button>
+              <button className="btn btn-outline-light" type="submit" onClick={handleSearch}>Search</button>
             </form>
-            <a className="picture-link" href="/wishlist" onClick={handleUnregestred}><img alt="some text" src={require("./images/wishlist.png")} /></a>
-            <a className="picture-link" href="/cart" onClick={handleUnregestred}><img alt="some text" src={require("./images/cart.png")} /></a>
-            <a className="picture-link me-3" href="/profile" onClick={handleUnregestred}><img alt="some text" src={require("./images/profile.png")} /></a>
+            <a className="picture-link" href="/wishlist" onClick={handleUnregestred}><img alt="wishlist" src={require("./images/wishlist.png")} /></a>
+            <a className="picture-link" href="/cart" onClick={handleUnregestred}><img alt="cart" src={require("./images/cart.png")} /></a>
+            <a className="picture-link me-3" href="/profile" onClick={handleUnregestred}><img alt="profile" src={require("./images/profile.png")} /></a>
           </div>
         </div>
       </nav>

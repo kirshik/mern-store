@@ -4,12 +4,15 @@ import { nanoid } from "nanoid";
 
 import serverURL, { axiosConfig } from "../globals";
 import swal from "sweetalert";
+import orderDetails from "./OrderDetails";
+import OrderDetails from "./OrderDetails";
 
 
 function Cart(props) {
   const [products, setProducts] = useState([]);
   const [quantities, setQuantities] = useState(new Map());
   const [total, setTotal] = useState(0);
+  const [shipmentDetails, setShipmentDetails] = useState(new Map());
 
   useEffect(() => {
     const url = serverURL + "/api/cart";
@@ -45,10 +48,10 @@ function Cart(props) {
 
   const cart = products.map((product) => {
     return (<tr key={nanoid()} className="fs-5 align-middle">
-      <td><img className="img img-fluid m-1" src={product.images_urls} alt={product.name} style={{ height: "15vh", width: "auto" }} /></td>
-      <td>{product.name}</td>
-      <td>{product.price}</td>
-      <td align="center"><input type="number" name={product.id} className="form-control m-0  w-25" min={1}
+      <td><a href={`/products/${product.id}`}> <img className="img img-fluid m-1 no-bg-img" src={product.images_urls} alt={product.name} style={{ height: "15vh", width: "auto" }} /></a></td>
+      <td><a className="text-black text-decoration-none" href={`/products/${product.id}`}>{product.name}</a></td>
+      <td>{product.price}$</td>
+      <td align="center"><input type="number" name={product.id} className="form-control m-0  w-50 text-center" min={1}
         value={quantities.get(product.id) ? quantities.get(product.id) : 1}
         onChange={handleInputChange}
         placeholder={product.quantity} /></td>
@@ -56,16 +59,7 @@ function Cart(props) {
     </tr>);
   });
   const emptyCart = <tr><td className="container mt-5 text-center"><p className="h1">Your cart is empty</p></td><td></td><td></td><td></td></tr>;
-  const orderDetails = <div>
-    <div className="container " style={{ minWidth: "20%" }}>
-      <p className="h2">CART TOTALS</p>
-      <div className="d-flex">
-        <p>subtotal</p>
-        <p className="ms-5">{total}$</p>
-      </div>
 
-    </div>
-  </div>;
   return (
     <>
       {props.header}
@@ -87,7 +81,7 @@ function Cart(props) {
           <tfoot>
           </tfoot>
         </table>
-        {orderDetails}
+        {<OrderDetails shipmentDetails={shipmentDetails} setShipmentDetails={setShipmentDetails} quantities={quantities} setProducts={setProducts} total={total} />}
       </div>
       {props.footer}
     </>

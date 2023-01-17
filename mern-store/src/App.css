@@ -1,0 +1,10 @@
+.carousel-img {
+  background: rgb(34, 193, 195);
+  background: linear-gradient(122deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+}
+
+.carousel-img img,
+.no-bg-img {
+  object-fit: cover;
+  mix-blend-mode: darken;
+}

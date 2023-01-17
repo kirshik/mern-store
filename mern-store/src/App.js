@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, useParams } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 import Home from './components/Home';
@@ -84,10 +84,11 @@ function App() {
         return <Route key={nanoid()} path={`/categories/${category.name}`}
           element={<Categories addToWishList={addToWishList} header={header} footer={footer} name={category.name} categoryId={category.id} />} />
       })}
-      {ids.map(id => {
+      <Route path='/products/:id' element={<Product header={header} addToWishList={addToWishList} getCategory={getProductCategory} footer={footer} />} />
+      {/* {ids.map(id => {
         return <Route key={nanoid()} path={`/products/${id}`}
           element={<Product header={header} id={id} addToWishList={addToWishList} getCategory={getProductCategory} footer={footer} />} />
-      })}
+      })} */}
 
     </Routes>
   return (

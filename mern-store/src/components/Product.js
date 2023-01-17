@@ -4,6 +4,7 @@ import serverURL from "../globals";
 import star_unfilled from "./images/star.svg";
 import star_fill from "./images/star_fill.svg";
 import { nanoid } from "nanoid";
+import { useParams } from "react-router-dom";
 
 
 function Product(props) {
@@ -12,8 +13,9 @@ function Product(props) {
   const [product, setProduct] = useState({});
 
   const handleNumberChange = (e) => { setNumber(e.target.value) };
+  const id = useParams().id;
   useEffect(() => {
-    const url = serverURL + `/api/products/${props.id}`;
+    const url = serverURL + `/api/products/${id}`;
     axios.get(url).then((response) => { setProduct(response.data); })
   }, []);
 
