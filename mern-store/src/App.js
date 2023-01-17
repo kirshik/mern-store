@@ -24,7 +24,6 @@ function App() {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [isSignIn, setIsSignIn] = useState(false);
-  const [ids, setIds] = useState([]);
 
   const handleShowSignInModalClose = () => setShowSignInModal(false);
   const handleShowSignInModalShow = () => setShowSignInModal(true);
@@ -49,7 +48,9 @@ function App() {
   function addToWishList(e) {
     const id = e.target.name;
     const url = serverURL + `/api/wishlist`;
-    axios.post(url, { product_id: id }, axiosConfig).then((response) => swal({ icon: "success", text: "Product added to wishlist" }));
+    axios.post(url, { product_id: id }, axiosConfig).then((response) => swal({ icon: "success", text: "Product added to wishlist" })).catch(e => {
+      swal({ icon: "error", text: e.response.data });
+    })
   };
 
 
@@ -60,10 +61,6 @@ function App() {
   useEffect(() => {
     const url = serverURL + '/api/categories';
     axios.get(url).then((response) => setCategories(response.data));
-  }, []);
-  useEffect(() => {
-    const url = serverURL + '/api/products/ids';
-    axios.get(url).then((response) => setIds(response.data));
   }, []);
 
   const header = <Header handleUnregestred={handleUnregestredHeader} />;
@@ -85,10 +82,7 @@ function App() {
           element={<Categories addToWishList={addToWishList} header={header} footer={footer} name={category.name} categoryId={category.id} />} />
       })}
       <Route path='/products/:id' element={<Product header={header} addToWishList={addToWishList} getCategory={getProductCategory} footer={footer} />} />
-      {/* {ids.map(id => {
-        return <Route key={nanoid()} path={`/products/${id}`}
-          element={<Product header={header} id={id} addToWishList={addToWishList} getCategory={getProductCategory} footer={footer} />} />
-      })} */}
+
 
     </Routes>
   return (

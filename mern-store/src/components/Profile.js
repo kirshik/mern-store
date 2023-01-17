@@ -8,30 +8,66 @@ function Profile(props) {
   const [user, setUser] = useState({ firstName: "s", lastName: "s", email: "s", phone: "s" });
   useEffect(() => {
     const url = serverURL + "/api/profile";
-    const userURL = serverURL + "/api/user";
+    const userURL = serverURL + "/api/user/";
     axios.get(url, axiosConfig).then((response) => {
       setOrders(response.data);
     });
-    axios.get(url, axiosConfig).then((response) => {
+    axios.get(userURL, axiosConfig).then((response) => {
+      console.log(response.data)
       setUser(response.data);
     });
   }, []);
 
+  function capitalizeFirstLetter(string) {
+    return string ? string[0].toUpperCase() + string.slice(1) : "";
+  }
+
+  const ordersContent = orders.length > 0 ? orders.map((order) => {
+    return (
+      <tr>
+        <td>{order.id}</td>
+        <td>{order.date}</td>
+        <td>{order.total}</td>
+        <td>{order.status}</td>
+        <td><button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderDetailsModal" data-bs-id={order.id}>Details</button></td>
+      </tr>
+    )
+  }) : <tr><td colSpan="5">No orders</td></tr>;
+
+
   return (
     <>
       {props.header}
-      <div className="container">
-        <div className="row">
-          <div className="col-5 profile-picture">
-            <img src="https://www.w3schools.com/howto/img_avatar.png" className="img-fluid" alt="profile" />
+      <div className="container mt-3">
+        <div className="row ">
+          <div className="col-3 profile-picture border rounded-3 ">
+            <img src="https://www.w3schools.com/howto/img_avatar.png" className="img-fluid p-4" alt="profile" />
           </div>
-          <div className="col-7 profile-info">
-            <h1>{user.firstName}</h1>
-            <h2>{user.lastName}</h2>
-            <h3>{user.email}</h3>
-            <h4>{user.phone}</h4>
-
-
+          <div className="col-8 profile-info border rounded-3 ms-3 d-flex justify-content-center" style={{ flexDirection: "column" }}>
+            <form className="form">
+              <input className="form-control mb-3" value={capitalizeFirstLetter(user.first_name)} />
+              <input className="form-control mb-3" value={capitalizeFirstLetter(user.last_name)} />
+              <input className="form-control mb-3" value={user.email} />
+              <input className="form-control mb-3" value={user.phone} />
+              <button className="btn btn-success">Save</button>
+            </form>
+          </div>
+        </div>
+        <div className="row mt-3 mb-3">
+          <div className="col-11 border rounded-3">
+            <h3>Orders</h3>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ordersContent}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

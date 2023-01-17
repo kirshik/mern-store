@@ -14,11 +14,13 @@ function OrderDetails(props) {
   }
   function handleOrder(e) {
     e.preventDefault();
-    const url = serverURL + "/api/orders";
+    const url = serverURL + "/api/order";
     const data = {
       shipment_details: Object.fromEntries(props.shipmentDetails),
-      cart: Object.fromEntries(props.quantities)
+      cart: Object.fromEntries(props.quantities),
+      total: props.total
     };
+    console.log("data", data);
     axios.post(url, data, axiosConfig).then((response) => {
       console.log(response);
       swal({ icon: "success", text: response.data });
@@ -26,7 +28,6 @@ function OrderDetails(props) {
     }).catch((error) => {
       console.log(error);
       console.log(data);
-      // swal({ icon: "error", text: error.response.data });
       swal({ icon: "error", text: "order failed" });
     });
   };

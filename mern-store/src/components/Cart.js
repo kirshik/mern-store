@@ -18,7 +18,7 @@ function Cart(props) {
     const url = serverURL + "/api/cart";
     axios.get(url, axiosConfig).then((response) => {
       const data = response.data.cart;
-      setQuantities(new Map(data.map((detail) => [detail.id, detail.quantity])));
+      setQuantities(new Map(data.map((detail) => [detail.id, detail.quantity ? detail.quantity : 1])));
       setProducts(data);
       setTotal(response.data.total);
     });

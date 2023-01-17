@@ -5,12 +5,21 @@ import star_unfilled from "./images/star.svg";
 import star_fill from "./images/star_fill.svg";
 import { nanoid } from "nanoid";
 import { useParams } from "react-router-dom";
+import AddToCartModal from "./AddToCartModal";
 
 
 function Product(props) {
 
   const [number, setNumber] = useState(1);
   const [product, setProduct] = useState({});
+  const [showAddToCartModal, setShowAddToCartModal] = useState(false);
+
+  function closeModal() {
+    setShowAddToCartModal(false);
+  }
+  function openModal() {
+    setShowAddToCartModal(true);
+  }
 
   const handleNumberChange = (e) => { setNumber(e.target.value) };
   const id = useParams().id;
@@ -27,6 +36,7 @@ function Product(props) {
   </div>;
   return (
     <>
+      <AddToCartModal show={showAddToCartModal} productId={product.id} handleClose={closeModal} />
       {props.header}
       <div className="container mt-5 mb-5">
         <div className="row d-flex">
@@ -56,7 +66,7 @@ function Product(props) {
                   onChange={handleNumberChange}
                 />
               </div>
-              <button className="btn btn-danger me-2">Add to Cart</button>
+              <button className="btn btn-danger me-2" onClick={openModal}>Add to Cart</button>
               <button className="btn  btn-dark" name={product.id} onClick={props.addToWishList}>Add to Wishlist</button>
             </div>
           </div>
