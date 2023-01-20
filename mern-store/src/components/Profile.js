@@ -2,10 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import serverURL, { axiosConfig } from "../globals";
 import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function Profile(props) {
   const [orders, setOrders] = useState([]);
   const [user, setUser] = useState({ firstName: "s", lastName: "s", email: "s", phone: "s" });
+  const navigation = useNavigate();
+
   useEffect(() => {
     const url = serverURL + "/api/profile";
     const userURL = serverURL + "/api/user/";
@@ -17,6 +21,18 @@ function Profile(props) {
       setUser(response.data);
     });
   }, []);
+
+  function logOut(e) {
+    e.preventDefault();
+    const url = serverURL + "/api/sign-out";
+    axios.get(url, axiosConfig).then((response) => {
+      Cookies.remove("userID");
+      navigation("/");
+    }).catch(e => {
+      swal({ icon: "error", text: "something went wrong" });
+    });
+
+  }
 
   function capitalizeFirstLetter(string) {
     return string ? string[0].toUpperCase() + string.slice(1) : "";
@@ -35,6 +51,7 @@ function Profile(props) {
   }) : <tr><td colSpan="5">No orders</td></tr>;
 
 
+
   return (
     <>
       {props.header}
@@ -50,6 +67,7 @@ function Profile(props) {
               <input className="form-control mb-3" value={user.email} />
               <input className="form-control mb-3" value={user.phone} />
               <button className="btn btn-success">Save</button>
+              <button className="btn btn-secondary ms-2" onClick={logOut}>Log out</button>
             </form>
           </div>
         </div>
