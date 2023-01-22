@@ -12,7 +12,7 @@ function Categories(props) {
   return (
     <>
       {props.header}
-      <Filter name={props.name} categories={props.categories} />
+
       {body}
       {props.footer}
     </>

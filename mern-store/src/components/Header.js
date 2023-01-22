@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import serverURL, { axiosConfig } from "../globals";
 import "./Header.css"
 function Header(props) {
@@ -7,11 +8,13 @@ function Header(props) {
   const [searchResultProducts, setSearchResultProducts] = useState([]);
   const [searchResultCategories, setSearchResultCategories] = useState([]);
   const [searchResultVisible, setSearchResultVisible] = useState("");
+  const navigation = useNavigate();
 
   function handleUnregestred(e) {
     props.handleUnregestred(e);
   }
   function handleSearchValue(e) {
+    setSearchValue(e.target.value);
     e.target.value === "" ? setSearchResultVisible("hide") :
       setSearchResultVisible("show");
     const url = serverURL + `/api/search/${e.target.value}`;
@@ -22,7 +25,8 @@ function Header(props) {
   }
 
   function handleSearch(e) {
-
+    e.preventDefault();
+    navigation(`/search?${searchValue}`);
   }
   const searchResultProductsElements = searchResultProducts.map((product) => {
     const name = product.name.length > 20 ? product.name.slice(0, 20) + "..." : product.name;

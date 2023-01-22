@@ -10,7 +10,7 @@ function AboutUs(props) {
 
       <div className="card bg-dark  border-0 rounded-0 text-white" >
         <img src="https://portotheme.com/html/porto_ecommerce/assets/images/page-header-bg.jpg" className="card-img m-0 w-100 rounded-0" alt="..."></img>
-        <div className="card-img-overlay d-flex-col text-left ms-5 text-dark mt-3">
+        <div className="card-img-overlay d-flex-col text-left ms-5 text-dark mt-3" style={{ minHeight: "20vh" }}>
           <p className="card-title h3">About us <br /><span className="h1">Our Company</span></p>
           <button type="button" className="btn btn-outline-dark ">Contact Us</button>
         </div>
@@ -35,7 +35,7 @@ function AboutUs(props) {
           <div className="col-sm-3">
             <div className="card">
               <div className="card-body">
-                <img className="card-img-top w-25 mb-3" src={Shippment} alt="Card image cap"></img>
+                <img className="card-img-top w-25 mb-3" src={Shippment} alt="Card cap"></img>
                 <h5 className="card-title">Free Shipping</h5>
                 <p className="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
               </div>
@@ -44,7 +44,7 @@ function AboutUs(props) {
           <div className="col-sm-3">
             <div className="card">
               <div className="card-body">
-                <img className="card-img-top w-25 mb-3" src={Paid} alt="Card image cap"></img>
+                <img className="card-img-top w-25 mb-3" src={Paid} alt="Card cap"></img>
                 <h5 className="card-title ">100% Money Back Guarantee</h5>
                 <p className="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
               </div>
@@ -53,7 +53,7 @@ function AboutUs(props) {
           <div className="col-sm-3">
             <div className="card">
               <div className="card-body">
-                <img className="card-img-top w-25 mb-3" src={Support} alt="Card image cap"></img>
+                <img className="card-img-top w-25 mb-3" src={Support} alt="Card cap"></img>
                 <h5 className="card-title">Online Support 24/7</h5>
                 <p className="card-text muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industr.</p>
               </div>

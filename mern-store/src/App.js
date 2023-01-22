@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Outlet, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet, useParams, useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import axios from 'axios';
 import Home from './components/Home';
@@ -17,6 +17,7 @@ import Cart from './components/Cart';
 import Profile from './components/Profile';
 import WishList from './components/WishList';
 import swal from 'sweetalert';
+import Search from './components/Search';
 
 
 function App() {
@@ -47,10 +48,23 @@ function App() {
   }
   function addToWishList(e) {
     const id = e.target.name;
-    const url = serverURL + `/api/wishlist`;
-    axios.post(url, { product_id: id }, axiosConfig).then((response) => swal({ icon: "success", text: "Product added to wishlist" })).catch(e => {
-      swal({ icon: "error", text: e.response.data });
-    })
+    const url = serverURL + `/api/wish-list/add`;
+    const data = { product_id: id };
+    axios.post(url, data, axiosConfig).then((response) => {
+      const swalSettings = {
+        icon: "success",
+        text: response.data,
+        button: {
+          text: "Go to wishlist",
+          value: true,
+          visible: true
+        }
+      }
+      swal(swalSettings).then((result) => { if (result) { } });
+    }).catch((error) => {
+      console.log(error);
+      swal({ icon: "error", text: "Something went wrong" });
+    });
   };
 
 
@@ -68,9 +82,10 @@ function App() {
 
   const routes =
     <Routes>
-      <Route path="/" element={<Home header={header} footer={footer} categories={categories} />} />
+      <Route path="/" element={<Home header={header} footer={footer} categories={categories} addToWishList={addToWishList} />} />
       <Route path="/categories" element={<Categories addToWishList={addToWishList} header={header} footer={footer} categories={categories} />} />
       <Route path="/about-us" element={<AboutUs header={header} footer={footer} />} />
+      <Route path="/search" element={<Search header={header} footer={footer} addToWishList={addToWishList} />} />
 
       <Route path="/cart" element={<Cart header={header} footer={footer} />} />
       <Route path="/wishlist" element={<WishList header={header} footer={footer} />} />

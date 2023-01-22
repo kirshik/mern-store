@@ -3,11 +3,13 @@ import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import serverURL, { axiosConfig } from '../globals';
 import axios from 'axios';
+import CategoryItem from './CategoryItem';
 
 
 
 function Home(props) {
   const [topProducts, setTopProducts] = useState([]);
+  const [topSearches, setTopSearches] = useState([]);
 
   useEffect(() => {
     const url = serverURL + "/api/products/top/3/1";
@@ -17,6 +19,13 @@ function Home(props) {
       });
       setTopProducts(products);
     })
+  }, [])
+
+  useEffect(() => {
+    const url = serverURL + "/api/products/top/5";
+    axios.get(url, axiosConfig).then((res) => {
+      setTopSearches(res.data);
+    });
   }, [])
 
 
@@ -34,6 +43,12 @@ function Home(props) {
         </Carousel.Caption>
       </a>
     </Carousel.Item>
+  });
+
+  const topSearchesList = topSearches.map((product) => {
+    return <CategoryItem addToWishList={props.addToWishList}
+      id={product.id} name={product.name} title={product.description}
+      key={nanoid()} image={product.images_urls} />
   });
 
   return (
@@ -64,10 +79,14 @@ function Home(props) {
       </main>
       <div className="container">
         <p className="h1 text-center">Looking for something else?</p>
-        <form className="form-inline d-flex mt-4 m-5">
+        <p className="h4 text-center">Here our top products</p>
+        {/* <form className="form-inline d-flex mt-4 m-5">
           <input className="form-control mr-sm-2 me-1" type="search" placeholder="Search" aria-label="Search" />
-          <button className="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form> */}
+        <div className='row mb-5'>
+          {topSearchesList}
+        </div>
+
       </div>
 
       {props.footer}

@@ -2,7 +2,7 @@
 function CategoryItem(props) {
 
   return (
-    <div className={`card  ms-3 col ${props.col} m-2 text-dark text-decoration-none`} >
+    <div className={`card  ms-3 col ${props.col} m-2 p-2 text-dark text-decoration-none`} >
       <a href={`/products/${props.id}`} className="img card-img-top m-2 rounded mx-auto d-block h-50">
         <img src={props.image} className="img card-img-top m-2 rounded mx-auto d-block " style={{ height: "30vh" }} alt={props.name} />
       </a>

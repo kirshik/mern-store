@@ -37,8 +37,7 @@ function AddToCartModal(props) {
     };
 
     axios.post(urlPOST, data, axiosConfig).then((response) => {
-      console.log(response);
-      props.handleDelete(e);
+      if (props.handleDelete) props.handleDelete(e);
       props.handleClose();
       const swalSettings = {
         icon: "success",
