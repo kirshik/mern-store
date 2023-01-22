@@ -55,7 +55,7 @@ function Header(props) {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">Electro</a>
+          <a className="navbar-brand" href="/">Dosha</a>
           <div className="nav-element-container">
             <form className="d-flex me-3 ms-3" role="search">
 

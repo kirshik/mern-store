@@ -47,6 +47,7 @@ function Home(props) {
 
   const topSearchesList = topSearches.map((product) => {
     return <CategoryItem addToWishList={props.addToWishList}
+      addToCart={props.addToCart} setProductId={props.setProductId}
       id={product.id} name={product.name} title={product.description}
       key={nanoid()} image={product.images_urls} />
   });
@@ -80,9 +81,6 @@ function Home(props) {
       <div className="container">
         <p className="h1 text-center">Looking for something else?</p>
         <p className="h4 text-center">Here our top products</p>
-        {/* <form className="form-inline d-flex mt-4 m-5">
-          <input className="form-control mr-sm-2 me-1" type="search" placeholder="Search" aria-label="Search" />
-        </form> */}
         <div className='row mb-5'>
           {topSearchesList}
         </div>

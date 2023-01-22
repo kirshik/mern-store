@@ -25,6 +25,7 @@ function Category(props) {
     <div className="row justify-content-center">
       {products.map((product) => {
         return <CategoryItem addToWishList={props.addToWishList}
+          addToCart={props.addToCart} setProductId={props.setProductId}
           col="col-3" id={product.id} name={product.name} title={product.description}
           key={nanoid()} image={product.images_urls} />
       })}
@@ -32,6 +33,7 @@ function Category(props) {
       <div className="row justify-content-between m-2">
         {topProducts.map((product) => {
           return <CategoryItem addToWishList={props.addToWishList}
+            addToCart={props.addToCart} setProductId={props.setProductId}
             id={product.id} name={product.name} title={product.description}
             key={nanoid()} image={product.images_urls} />
         })}

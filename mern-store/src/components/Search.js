@@ -86,8 +86,7 @@ function Search(props) {
         <div onBlur={() => { setSearchResultVisible("hidden") }}>
           <form className="d-flex m-4 input-group-lg" role="search">
             <input className="form-control me-2 " type="search" onChange={handleSearchValue} value={searchValue} placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-dark" type="button" onClick={handleSearch}>Search</button>
-
+            <button className="btn btn-outline-dark" type="submit" onClick={handleSearch}>Search</button>
           </form>
           <div className="dropdown d-flex mt-2 ms-3"  >
             <ul className={`dropdown-menu ${searchResultVisible}`} style={{ overflowX: "hidden", maxHeight: "60vh" }}>
